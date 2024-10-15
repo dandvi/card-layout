@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #111111;
+            padding: 0;
+            margin: 0;
+        }
+
+        .buttons-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .buttons-list li {
+            display: inline-block;
+        }
+
+        .buttons-list li:not(:first-child) {
+            margin-left: 3px
+        }
+
+        .btn {
+            background-color: #FAFF00;
+            border: none;
+            padding: 4px;
+            padding-left: 9px;
+            padding-right: 9px;
+            border-radius: 3px;
+        }
+
+        .buttons {
+            position: absolute;
+            left: 15px;
+            top: 15px;
+        }
+
+        .active {
+            background-color: #DC44CD;
+        }
+
+        .card-item {
+            width: 55px;
+            height: 90px;
+            background-color: white;
+            border-radius: 5%;
+            display: inline-block;
+            margin-left: -40px;
+            border: 1px solid #111111;
+        }
+
+        .card-item:last-child {
+            background-image: url(./statement/card-face.svg);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 33px;
+        }
+
+        .game-place {
+            padding: 40px;
+            height: 100%;
+        }
+
+        .content {
+            text-align: center;
+            height: 90vh;
+        }
+        
+        .grid-for-two {
+            display: grid; 
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr; 
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr; 
+            gap: 0px 0px; 
+            grid-template-areas: 
+                ". . first . ."
+                ". . . . ."
+                ". . . . ."
+                ". . . . ."
+                ". . second . ."; 
+        }
+
+        .grid-for-two > div:nth-child(1) {
+            grid-area: first;
+        }
+
+        .grid-for-two > div:nth-child(2) {
+            grid-area: second;
+        }
+
+        .grid-for-three {
+            display: grid; 
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr; 
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr; 
+            gap: 0px 0px; 
+            grid-template-areas: 
+                ". . first . ."
+                ". . . . ."
+                ". . . . ."
+                ". . . . ."
+                "second . . . third"; 
+        }
+
+        .grid-for-three > div:nth-child(1) {
+            grid-area: first;
+        }
+
+        .grid-for-three > div:nth-child(2) {
+            grid-area: second;
+        }
+
+        .grid-for-three > div:nth-child(3) {
+            grid-area: third;
+        }
+
+
+        .grid-for-four {
+            display: grid; 
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr; 
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr; 
+            gap: 0px 0px; 
+            grid-template-areas: 
+                ". . first . ."
+                ". . . . ."
+                "second . . . third"
+                ". . . . ."
+                ". . four . ."; 
+            }
+
+        .grid-for-four > div:nth-child(1) {
+            grid-area: first;
+        }
+        .grid-for-four > div:nth-child(2) {
+            grid-area: second;
+        }
+        .grid-for-four > div:nth-child(3) {
+            grid-area: third;
+        }
+        .grid-for-four > div:nth-child(4) {
+            grid-area: four;
+        }
+
+
+        .grid-for-five {
+            display: grid; 
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr; 
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr; 
+            gap: 0px 0px; 
+            grid-template-areas: 
+                ". . first . ."
+                "second . . . third"
+                ". . . . ."
+                "four . . . five"
+                ". . . . ."; 
+        }
+
+        .grid-for-five > div:nth-child(1) {
+            grid-area: first;
+        }
+        .grid-for-five > div:nth-child(2) {
+            grid-area: second;
+        }
+        .grid-for-five > div:nth-child(3) {
+            grid-area: third;
+        }
+        .grid-for-five > div:nth-child(4) {
+            grid-area: four;
+        }
+        .grid-for-five > div:nth-child(5) {
+            grid-area: five;
+        }
+
+
+        .grid-for-six {
+            display: grid; 
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr; 
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr; 
+            gap: 0px 0px; 
+            grid-template-areas: 
+                ". . first . ."
+                "second . . . third"
+                ". . . . ."
+                "four . . . five"
+                ". . six . ."; 
+            }
+
+        .grid-for-six > div:nth-child(1) {
+            grid-area: first;
+        }
+        .grid-for-six > div:nth-child(2) {
+            grid-area: second;
+        }
+        .grid-for-six > div:nth-child(3) {
+            grid-area: third;
+        }
+        .grid-for-six > div:nth-child(4) {
+            grid-area: four;
+        }
+        .grid-for-six > div:nth-child(5) {
+            grid-area: five;
+        }
+        .grid-for-six > div:nth-child(6) {
+            grid-area: six;
+        }
+    </style>
+</head>
+<body>
+    <div class="buttons">
+        <ul class="buttons-list">
+            <li>
+                <button id="players-2" class="btn">2</button>
+            </li>
+            <li>
+                <button id="players-3" class="btn">3</button>
+            </li>
+            <li>
+                <button id="players-4" class="btn">4</button>
+            </li>
+            <li>
+                <button id="players-5" class="btn">5</button>
+            </li>
+            <li>
+                <button id="players-6" class="btn">6</button>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="game-place"></div>
+    </div>
+    <script>
+        const gamePlace = document.querySelector('.game-place');
+
+        function createCards(count) {
+            gamePlace.innerHTML = '';
+
+            for (let i = 0; i < count; i++) {
+                const cardsList = document.createElement('div');
+                cardsList.className = 'card-list';
+                gamePlace.appendChild(cardsList);
+
+                for (let j = 0; j < 7; j++) {
+                    const card = document.createElement('div');
+                    card.className = 'card-item';
+                    cardsList.appendChild(card);
+                }
+            }
+
+        if (gamePlace.children.length === 2) {
+            gamePlace.className = 'game-place';
+            gamePlace.classList.add('grid-for-two')
+        } else if (gamePlace.children.length === 3) {
+            gamePlace.className = 'game-place';
+            gamePlace.classList.add('grid-for-three')
+        } else if (gamePlace.children.length === 4) {
+            gamePlace.className = 'game-place';
+            gamePlace.classList.add('grid-for-four')
+        } else if (gamePlace.children.length === 5) {
+            gamePlace.className = 'game-place';
+            gamePlace.classList.add('grid-for-five')
+        } else if (gamePlace.children.length === 6) {
+            gamePlace.className = 'game-place';
+            gamePlace.classList.add('grid-for-six')
+        }
+        }
+
+        const buttons = document.querySelectorAll('.btn');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', function () {
+                buttons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                const playerCount = parseInt(button.textContent);
+                createCards(playerCount);
+            });
+        });
+    </script>
+</body>
+
+</html>
